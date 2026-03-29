@@ -97,6 +97,27 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div>
 
+<<<<<<< HEAD
+=======
+       {resumeData.skills && (
+        <div className="px-6 pb-3">
+          <span className="text-[15px] font-bold text-gray-800">Skills</span>
+          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+          <span className="text-[12px] block">
+            {[
+              ...(resumeData.skills.programming || []),
+              ...(resumeData.skills.databases || []),
+              ...(resumeData.skills.frameworksAndTools || []),
+              ...(resumeData.skills.aiMlAndComputerVision || []),
+            ]
+              .map((skill) => skill.name)
+              .filter(Boolean)
+              .join(", ")}
+          </span>
+        </div>
+      )}      
+
+>>>>>>> b8cabbd (Added Skills Section)
       {resumeData.workExperience.some(
         (exp) =>
           exp.company.trim() !== "" ||
@@ -289,6 +310,7 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
+<<<<<<< HEAD
       {resumeData.skills.length > 0 && (
         <div className="px-6 pb-3">
           <span className="text-[15px] font-bold text-gray-800">Skills:</span>
@@ -298,6 +320,12 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
           </span>
         </div>
       )}
+=======
+     
+
+      
+
+>>>>>>> b8cabbd (Added Skills Section)
 
       {resumeData.languages.some((lang) => lang.name !== "") && (
         <div className="px-6 pb-3">

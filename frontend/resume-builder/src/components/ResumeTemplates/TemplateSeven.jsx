@@ -107,6 +107,28 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div> */}
 
+<<<<<<< HEAD
+=======
+      {/* SKILLS */}
+      {resumeData.skills && (
+        <div className="px-6 pb-3">
+          <span className="text-[15px] font-bold text-gray-800">Skills</span>
+          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+          <span className="text-[12px] block">
+            {[
+              ...(resumeData.skills.programming || []),
+              ...(resumeData.skills.databases || []),
+              ...(resumeData.skills.frameworksAndTools || []),
+              ...(resumeData.skills.aiMlAndComputerVision || []),
+            ]
+              .map((skill) => skill.name)
+              .filter(Boolean)
+              .join(", ")}
+          </span>
+        </div>
+      )}        
+
+>>>>>>> b8cabbd (Added Skills Section)
       {/* EDUCATION */}
       {resumeData.educaton.length > 0 && (
         <div className="px-6 pb-3">
@@ -143,6 +165,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
+<<<<<<< HEAD
       {/* SKILLS */}
       {resumeData.skills.length > 0 && (
         <div className="px-6 pb-3">
@@ -153,6 +176,9 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
           </span>
         </div>
       )}
+=======
+      
+>>>>>>> b8cabbd (Added Skills Section)
 
       {/* EXPERIENCE */}
       {resumeData.workExperience.some(

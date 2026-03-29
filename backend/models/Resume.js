@@ -49,12 +49,20 @@ const ResumeSchema = new mongoose.Schema(
         endDate: String,
       },
     ],
-    skills: [
-      {
-        name: String,
-        progress: Number,
-      },
-    ],
+    skills: {
+      programming: [
+        { name: String, progress: Number }
+      ],
+      databases: [
+        { name: String, progress: Number }
+      ],
+      frameworksAndTools: [
+        { name: String, progress: Number }
+      ],
+      aiMlAndComputerVision: [
+        { name: String, progress: Number }
+      ]
+    },
     projects: [
       {
         title: String,

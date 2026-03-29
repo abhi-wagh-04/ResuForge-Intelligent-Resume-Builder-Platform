@@ -247,6 +247,10 @@ function EditResume() {
       "education-info",
       "skills",
       "projects",
+<<<<<<< HEAD
+=======
+      "publications",
+>>>>>>> b8cabbd (Added Skills Section)
       "certifications",
       "additionalInfo",
     ];
@@ -315,6 +319,7 @@ function EditResume() {
 
       case "skills":
         return (
+<<<<<<< HEAD
           <SkillsInfoForm
             skillsInfo={resumeData?.skills}
             updateArrayItem={(index, key, value) => {
@@ -323,6 +328,14 @@ function EditResume() {
             addArrayItem={(newItem) => addArrayItem("skills", newItem)}
             removeArrayItem={(index) => removeArrayItem("skills", index)}
           />
+=======
+         <SkillsInfoForm
+          skillsInfo={resumeData?.skills}
+          updateArrayItem={updateSkillItem}   // already expects (category, index, key, value)
+          addArrayItem={addSkillItem}         // expects (category, newItem)
+          removeArrayItem={removeSkillItem}   // expects (category, index)
+        />
+>>>>>>> b8cabbd (Added Skills Section)
         );
 
       case "projects":
@@ -435,6 +448,64 @@ function EditResume() {
     });
   };
 
+<<<<<<< HEAD
+=======
+  // ------------------- Skills Helpers -------------------
+
+  // Update an item in a skills category
+  const updateSkillItem = (category, index, key, value) => {
+    setResumeData((prev) => {
+      const updatedCategory = [...prev.skills[category]];
+
+      if (key === null) {
+        updatedCategory[index] = value;
+      } else {
+        updatedCategory[index] = {
+          ...updatedCategory[index],
+          [key]: value,
+        };
+      }
+
+      return {
+        ...prev,
+        skills: {
+          ...prev.skills,
+          [category]: updatedCategory,
+        },
+      };
+    });
+  };
+
+  // Add a new skill to a category
+  const addSkillItem = (category, newItem) => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: {
+        ...prev.skills,
+        [category]: [...prev.skills[category], newItem],
+      },
+    }));
+  };
+
+  // Remove a skill from a category
+  const removeSkillItem = (category, index) => {
+    setResumeData((prev) => {
+      const updatedCategory = [...prev.skills[category]];
+      updatedCategory.splice(index, 1);
+
+      return {
+        ...prev,
+        skills: {
+          ...prev.skills,
+          [category]: updatedCategory,
+        },
+      };
+    });
+  };
+
+
+
+>>>>>>> b8cabbd (Added Skills Section)
   // Fetch resume info by ID
   const fetchResumeDetailsById = async () => {
     try {
