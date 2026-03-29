@@ -47,6 +47,9 @@ const ResumeSchema = new mongoose.Schema(
         institution: String,
         startDate: String,
         endDate: String,
+        cgpa: String,
+       
+        location: String,
       },
     ],
     skills: {
@@ -56,10 +59,28 @@ const ResumeSchema = new mongoose.Schema(
       databases: [
         { name: String, progress: Number }
       ],
-      frameworksAndTools: [
+      backendDevelopment: [
+        { name: String, progress: Number }
+      ],
+      frontendDevelopment: [
+        { name: String, progress: Number }
+      ],
+      softwareEngineeringFundamentals: [
+        { name: String, progress: Number }
+      ],
+      cloudTools: [
         { name: String, progress: Number }
       ],
       aiMlAndComputerVision: [
+        { name: String, progress: Number }
+      ],
+      ecad: [
+        { name: String, progress: Number }
+      ],
+      pcb: [
+        { name: String, progress: Number }
+      ],
+      softSkills: [
         { name: String, progress: Number }
       ]
     },
@@ -67,6 +88,7 @@ const ResumeSchema = new mongoose.Schema(
       {
         title: String,
         description: String,
+        tools: [],
         github: String,
         liveDemo: String,
       },

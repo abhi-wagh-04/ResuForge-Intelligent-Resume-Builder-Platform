@@ -49,7 +49,7 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
   return (
     <div
       ref={resumeRef}
-      className="p-4 bg-white text-[12px] leading-tight"
+      className="p-2 bg-white text-[12px] leading-tight"
       style={{
         fontFamily: `"Georgia", serif`,
         fontFeatureSettings: `"lnum", "tnum"`,
@@ -59,29 +59,38 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
         height: "auto",
       }}
     >
-      <div className="px-6 pt-6 pb-3 text-center">
+      <div className="px-3 pt-1 pb-3 text-center">
         <h2 className="text-lg font-bold">{resumeData.profileInfo.fullName}</h2>
         <div className="text-[11px] flex justify-center font-semibold flex-wrap gap-x-1 ">
           <span>{resumeData.contactInfo.email}</span>
-          <span>|</span>
+          <span>| +91</span>
           <span>{resumeData.contactInfo.phone}</span>
           <span>|</span>
           <span>
             {resumeData.contactInfo.github && (
               <a
                 href={resumeData.contactInfo.github}
-                className="text-blue-600 hover:underline"
+                className="text-gray-600 hover:underline"
                 target="_blank"
                 rel="noreferrer"
               >
-                GitHub
+                gitHub
               </a>
             )}
           </span>
           {resumeData.contactInfo.linkedin && (
             <>
               <span>|</span>
-              <span>{resumeData.contactInfo.linkedin}</span>
+              <a
+                href={resumeData.contactInfo.linkedin}
+                className="text-gray-800 hover:underline font-semibold"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+              <span>|</span>
+              <span>{resumeData.contactInfo.location}</span>
             </>
           )}
           {/* {resumeData.contactInfo.website && (
@@ -93,22 +102,23 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
         </div>
       </div>
 
-      <div className="px-6 pb-3">
+      <div className="px-3 pb-1">
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div>
 
 <<<<<<< HEAD
 =======
        {resumeData.skills && (
-        <div className="px-6 pb-3">
+        <div className="px-3 pb-1">
           <span className="text-[15px] font-bold text-gray-800">Skills</span>
-          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+          <hr className="border-t-2 border-gray-800 mb-2 w-full" />
           <span className="text-[12px] block">
             {[
               ...(resumeData.skills.programming || []),
               ...(resumeData.skills.databases || []),
               ...(resumeData.skills.frameworksAndTools || []),
               ...(resumeData.skills.aiMlAndComputerVision || []),
+              ...(resumeData.skills.ecad || []),
             ]
               .map((skill) => skill.name)
               .filter(Boolean)
@@ -126,11 +136,11 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
           exp.endDate.trim() !== "" ||
           exp.description.trim() !== ""
       ) && (
-        <div className="px-6 pb-3">
-          <h2 className="text-[15px] font-bold text-gray-800 mb-1">
+        <div className="px-3 pb-1">
+          <span className="text-[15px] font-bold text-gray-800 mb-1">
             Work Experience
-          </h2>
-          <hr className="border-t-2 border-gray-400 mb-2" />
+          </span>
+          <hr className="border-t-2 border-gray-800 mb-2" />
           {resumeData.workExperience
             .filter(
               (exp) =>
@@ -148,16 +158,19 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
                     <span className="font-normal italic">{exp.role}</span>
                   </p>
                   <p className="text-[11px] text-gray-600">
-                    {new Date(exp.startDate).toLocaleString("default", {
-                      month: "long",
-                      year: "numeric",
-                    })}{" "}
-                    -{" "}
-                    {new Date(exp.endDate).toLocaleString("default", {
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
+                  {new Date(exp.startDate).toLocaleString("default", {
+                    month: "long",
+                    year: "numeric",
+                  })}{" "}
+                  -{" "}
+                  {exp.endDate
+                    ? new Date(exp.endDate).toLocaleString("default", {
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "Present"}
+                </p>
+
                 </div>
                 <ul className="list-disc pl-4 text-[12px] mt-1 space-y-0.5 leading-snug">
                   {exp.description
@@ -173,9 +186,9 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
-      <div className="px-6 pb-3">
-        <h2 className="text-[15px] font-bold text-gray-800 mb-1">Projects</h2>
-        <hr className="border-t-2 border-gray-400 mb-2" />
+      <div className="px-3 pb-1 mt-1">
+        <span className="text-[15px] font-bold text-gray-800 mb-1">Projects</span>
+        <hr className="border-t-2 border-gray-800 mb-2" />
         {resumeData.projects.map((project, index) => (
           <div key={index} className="mb-2">
             <div className="flex justify-between items-center">
@@ -214,13 +227,18 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
                   <li key={i}>{point}.</li>
                 ))}
             </ul>
+            {project.tools && project.tools.length > 0 && (
+            <div className=" text-gray-700">
+              <span className="font-bold">Tools:{" "}{project.tools.join(", ")}</span>
+            </div>
+            )}
           </div>
         ))}
       </div>
 
-      <div className="px-6 pb-3">
-        <h2 className="text-[15px] font-bold text-gray-800 mb-1">Education</h2>
-        <hr className="border-t-2 border-gray-400 mb-2" />
+      <div className="px-3 pb-1">
+        <span className="text-[15px] font-bold text-gray-800 mb-1">Education</span>
+        <hr className="border-t-2 border-gray-800 mb-2" />
         {resumeData.educaton.map((edu, index) => (
           <div key={index} className="mb-2">
             <div className="flex justify-between items-start">
@@ -229,8 +247,15 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
                   {edu.degree},{" "}
                 </p>
                 <p className="font-medium text-gray-700 inline">
-                  {edu.institution}
+                  {edu.institution},
                 </p>
+                {edu.cgpa && (
+                <span className="ml-1 text-gray-700 font-semibold">
+                  {String(edu.cgpa).includes("%") || parseFloat(edu.cgpa) > 10
+                    ? `${parseFloat(edu.cgpa)}%`
+                    : `CGPA: ${parseFloat(edu.cgpa)}`}
+                </span>
+              )}
               </div>
               <p className="text-[11px] text-gray-600 text-right">
                 {new Date(edu.startDate).toLocaleString("default", {
@@ -250,13 +275,14 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
       </div>
 
       {resumeData.publications && resumeData.publications.length > 0 && (
-        <div className="px-6 pb-3">
-          <h2 className="text-[15px] font-bold text-gray-800 mb-1">
+        <div className="px-3 pb-1">
+          <span className="text-[15px] font-bold text-gray-800 mb-1">
             Publications
-          </h2>
-          <hr className="border-t-2 border-gray-400 mb-2" />
+          </span>
+          <hr className="border-t-2 border-gray-800 mb-2" />
           {resumeData.publications.map((pub, index) => (
-            <div key={index} className="mb-3">
+            <div key={index} className="mb-1 flex gap-2 items-start justify-between text-[11px]">
+              <div>
               <p className="text-[13px] font-semibold text-gray-900">
                 {pub.link ? (
                   <a
@@ -274,7 +300,7 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
               <p className="text-[12px] text-gray-700 italic">
                 {pub.conference}, {pub.year}
               </p>
-              <ul className="list-disc pl-4 text-[12px] mt-1 space-y-0.5 leading-snug">
+              <ul className="list-disc pl-4 text-[12px] mt-1 leading-snug">
                 {pub.description
                   .split(".")
                   .map((point, i) => point.trim())
@@ -283,22 +309,33 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
                     <li key={i}>{point}.</li>
                   ))}
               </ul>
+              </div>
+                {pub.link && 
+                  <a
+                    href={pub.link}
+                    className="text-gray-600 hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Link
+                  </a>
+                }
+
             </div>
           ))}
         </div>
       )}
-
       {resumeData.certifications.some(
         (cert) =>
           cert.title.trim() !== "" ||
           cert.issuer.trim() !== "" ||
           cert.year.trim() !== ""
       ) && (
-        <div className="px-6 pb-3">
-          <h2 className="text-[15px] font-bold text-gray-800 mb-1">
+        <div className="px-3 pb-1">
+          <span className="text-[15px] font-bold text-gray-800 mb-1">
             Certifications
-          </h2>
-          <hr className="border-t-2 border-gray-400 mb-2" />
+          </span>
+          <hr className="border-t-2 border-gray-800 mb-2" />
           {resumeData.certifications.map((cert, index) => (
             <div key={index} className="flex justify-between text-[12px] mb-1">
               <span>{cert.title}</span>
@@ -328,11 +365,11 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
 >>>>>>> b8cabbd (Added Skills Section)
 
       {resumeData.languages.some((lang) => lang.name !== "") && (
-        <div className="px-6 pb-3">
+        <div className="px-3 pb-1">
           <span className="text-[15px] font-bold text-gray-800">
             Languages:
           </span>
-          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+          <hr className="border-t-2 border-gray-800 mb-2 w-full" />
           <span className="text-[12px] block">
             {resumeData.languages.map((lang) => lang.name).join(", ")}
           </span>
@@ -340,11 +377,11 @@ function TemplateSix({ resumeData, colorPalette, containerWidth }) {
       )}
 
       {resumeData.interests.some((interest) => interest.trim() !== "") && (
-        <div className="px-6 pb-3">
+        <div className="px-3 pb-1">
           <span className="text-[15px] font-bold text-gray-800">
             Interests:
           </span>
-          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+          <hr className="border-t-2 border-gray-800 mb-2 w-full" />
           <span className="text-[12px] block">
             {resumeData.interests
               .filter((interest) => interest.trim() !== "")

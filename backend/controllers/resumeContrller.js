@@ -43,6 +43,9 @@ export const createResume = catchAsync(async (req, res, next) => {
         institutions: "",
         startDate: "",
         endDate: "",
+        cgpa: "",
+       
+        location: "",
       },
     ],
     skills: [
@@ -55,6 +58,7 @@ export const createResume = catchAsync(async (req, res, next) => {
       {
         title: "",
         description: "",
+        tools: [],
         github: "",
         liveDemo: "",
       },

@@ -19,7 +19,7 @@ function ContactInfoForm({ contactInfo, updateSection }) {
         <Input
           label="Email"
           placeholder="abhi@example.com"
-          type="text"
+          type="email"
           value={contactInfo?.email || ""}
           onChange={(e) => updateSection("email", e.target.value)}
         />

@@ -49,7 +49,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
   return (
     <div
       ref={resumeRef}
-      className="p-4 bg-white text-[12px] leading-tight"
+      className="p-2 bg-white leading-tight"
       style={{
         fontFamily: `"Times New Roman", Times, serif`,
         fontFeatureSettings: `"lnum", "tnum"`,
@@ -59,63 +59,73 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         height: "auto",
       }}
     >
-      <div className="px-6 pt-6 pb-3">
-        <div className="flex justify-between text-[11px] flex-wrap">
-          {/* Left section */}
-          <div className="text-left">
-            <h2 className="text-[28px] font-bold">
-              {resumeData.profileInfo.fullName}
-            </h2>
+     <div className="px-1 pb-1">
+  {/* Full Name on its own row */}
+  <div className="w-full text-[24px] text-left">
+    <h2 className="font-bold leading-tight">
+      {resumeData.profileInfo.fullName}
+    </h2>
+  </div>
 
-            {resumeData.contactInfo.github && (
-              <div>
-                <span className="font-semibold text-gray-600">GitHub: </span>
-                <a
-                  href={resumeData.contactInfo.github}
-                  className="text-gray-600 hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {resumeData.contactInfo.github}
-                </a>
-              </div>
-            )}
-
-            {resumeData.contactInfo.linkedin && (
-              <div>
-                <span className="font-semibold text-gray-600 text-gray-600">LinkedIn: </span>
-                <a
-                  href={resumeData.contactInfo.github}
-                  className="text-gray-600 hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >{resumeData.contactInfo.linkedin}</a>
-                
-              </div>
-            )}
-          </div>
-
-          {/* Right section */}
-          <div className="text-right pt-4">
-            <div>
-              <span className="font-semibold text-gray-600">Email: </span>
-              <a
-                  href={resumeData.contactInfo.github}
-                  className="text-gray-600 hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >{resumeData.contactInfo.email}</a>
-              
-            </div>
-            <div>
-              <span className="font-semibold text-gray-600">Phone: +91 </span>
-              {resumeData.contactInfo.phone}
-            </div>
-          </div>
+  {/* Contact Info Row */}
+  <div className="flex justify-between flex-wrap items-start">
+    
+    {/* Left Section (GitHub + LinkedIn) */}
+    <div className="text-left">
+      {resumeData.contactInfo.github && (
+        <div>
+          <span className="font-semibold text-gray-600">GitHub: </span>
+          <a
+            href={resumeData.contactInfo.github}
+            className="text-gray-600 hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {resumeData.contactInfo.github}
+          </a>
         </div>
-      </div>
+      )}
 
-      {/* <div className="px-6 pb-3">
+      {resumeData.contactInfo.linkedin && (
+        <div>
+          <span className="font-semibold text-gray-600">LinkedIn: </span>
+          <a
+            href={resumeData.contactInfo.linkedin}
+            className="text-gray-600 hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {resumeData.contactInfo.linkedin}
+          </a>
+        </div>
+      )}
+    </div>
+
+    {/* Right Section (Email + Phone) */}
+    <div className="text-right">
+      {resumeData.contactInfo.email && (
+        <div>
+          <span className="font-semibold text-gray-600">Email: </span>
+          <a
+            href={`mailto:${resumeData.contactInfo.email}`}
+            className="text-gray-600 hover:underline"
+          >
+            {resumeData.contactInfo.email}
+          </a>
+        </div>
+      )}
+
+      {resumeData.contactInfo.phone && (
+        <div>
+          <span className="font-semibold text-gray-600">Phone: +91 </span>
+          {resumeData.contactInfo.phone}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+      {/* <div className="px-6 pb-1">
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div> */}
 
@@ -336,8 +346,8 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
           cert.issuer.trim() !== "" ||
           cert.year.trim() !== ""
       ) && (
-        <div className="px-6 pb-3">
-          <h2 className="text-[15px] font-bold text-gray-800 mb-1">
+        <div className="px-1 pb-1">
+          <h2 className=" font-bold text-gray-800 mb-1">
             Certifications
           </h2>
           <hr className="border-t-2 border-gray-400 mb-2" />
@@ -353,30 +363,40 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
       )}
 
       {resumeData.languages.some((lang) => lang.name !== "") && (
-        <div className="px-6 pb-3">
-          <span className="text-[15px] font-bold text-gray-800">
-            Languages:
-          </span>
+        <div className="px-1 pb-1">
+          <h2 className=" font-bold text-gray-800 mb-1">
+            Languages
+          </h2>
           <hr className="border-t-2 border-gray-400 mb-2 w-full" />
-          <span className="text-[12px] block">
-            {resumeData.languages.map((lang) => lang.name).join(", ")}
-          </span>
+
+          <ul className="pl-5 list-disc text-[12px] text-gray-800">
+            <li>
+              {resumeData.languages
+                .filter((lang) => lang.name.trim() !== "")
+                .map((lang) => lang.name)
+                .join(", ")}
+            </li>
+          </ul>
         </div>
       )}
 
-      {resumeData.interests.some((interest) => interest.trim() !== "") && (
-        <div className="px-6 pb-3">
-          <span className="text-[15px] font-bold text-gray-800">
-            Interests:
-          </span>
-          <hr className="border-t-2 border-gray-400 mb-2 w-full" />
-          <span className="text-[12px] block">
+
+     {resumeData.interests.some((interest) => interest.trim() !== "") && (
+      <div className="px-1 pb-1">
+        <h2 className=" font-bold text-gray-800 mb-1">
+          Interests
+        </h2>
+        <hr className="border-t-2 border-gray-400 mb-2 w-full" />
+
+        <ul className="pl-5 list-disc text-[12px] text-gray-800">
+          <li>
             {resumeData.interests
               .filter((interest) => interest.trim() !== "")
               .join(", ")}
-          </span>
-        </div>
-      )}
+          </li>
+        </ul>
+      </div>
+    )}
     </div>
   );
 }

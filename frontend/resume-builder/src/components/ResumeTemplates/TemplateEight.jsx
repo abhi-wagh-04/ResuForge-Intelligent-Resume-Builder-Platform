@@ -100,7 +100,11 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
         </span>
       )}
     </div>
-  </div>    
+  </div>   
+
+  <div className="px-3 pb-1">
+        <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
+  </div> 
 
 {/* EDUCATION */}
   <div className="px-2 pt-1 pb-2" style={{ fontFamily: bodyFont }}>
@@ -111,7 +115,7 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
       <span style={{ fontSize: "16px" }}>E</span>
       <span style={{ fontSize: "14px" }}>DUCATION</span>
     </h2>
-    <hr className="border-t border-gray-400 mb-1" />
+    <hr className="border-t border-gray-800 mb-1" />
     {resumeData.educaton.map((edu, index) => (
       <div key={index} className="mb-1 pl-4">
         <div className="flex justify-between items-start">
@@ -126,8 +130,15 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
               className="font-medium text-gray-700 inline"
               style={{ fontSize: "12px" }}
             >
-              {edu.institution}
+              {edu.institution},
             </p>
+            {edu.cgpa && (
+                <span className="ml-1 text-gray-700">
+                  {String(edu.cgpa).includes("%") || parseFloat(edu.cgpa) > 10
+                    ? `${parseFloat(edu.cgpa)}%`
+                    : `CGPA: ${parseFloat(edu.cgpa)}`}
+                </span>
+              )}
           </div>
           <p
             className="text-gray-600 text-right"
@@ -163,12 +174,12 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
       <span style={{ fontSize: "16px" }}>S</span>
       <span style={{ fontSize: "14px" }}>KILLS</span>
     </h2>
-    <hr className="border-t border-gray-400 mb-1 w-full" />
+    <hr className="border-t border-gray-800 mb-1 w-full" />
     <div className="pl-4">
       {(resumeData.skills.programming || []).length > 0 && (
         <div className="mb-0.5">
           <span className="font-semibold" style={{ fontSize: "11.5px" }}>
-            Languages:{" "}
+            Programming Languages: {" "}
           </span>
           <span style={{ fontSize: "11.5px" }}>
             {(resumeData.skills.programming || [])
@@ -177,25 +188,37 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
           </span>
         </div>
       )}
-      {(resumeData.skills.frameworksAndTools || []).length > 0 && (
+      {(resumeData.skills.backendDevelopment || []).length > 0 && (
         <div className="mb-0.5">
           <span className="font-semibold" style={{ fontSize: "11.5px" }}>
-            Frameworks & Libraries:{" "}
+            Backend Development: {" "}
           </span>
           <span style={{ fontSize: "11.5px" }}>
-            {(resumeData.skills.frameworksAndTools || [])
+            {(resumeData.skills.backendDevelopment || [])
               .map((skill) => skill.name)
               .join(", ")}
           </span>
         </div>
       )}
-      {(resumeData.skills.databases || []).length > 0 && (
-        <div className="mb-0.5">
+       {(resumeData.skills.ecad || []).length > 0 && (
+        <div>
           <span className="font-semibold" style={{ fontSize: "11.5px" }}>
-            Databases:{" "}
+            Microservices & Architecture: {" "}
           </span>
           <span style={{ fontSize: "11.5px" }}>
-            {(resumeData.skills.databases || [])
+            {(resumeData.skills.ecad || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.pcb || []).length > 0 && (
+        <div>
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Security: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.pcb || [])
               .map((skill) => skill.name)
               .join(", ")}
           </span>
@@ -204,10 +227,73 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
       {(resumeData.skills.aiMlAndComputerVision || []).length > 0 && (
         <div>
           <span className="font-semibold" style={{ fontSize: "11.5px" }}>
-            AI/ML & Computer Vision:{" "}
+            Messaging & Streaming: {" "}
           </span>
           <span style={{ fontSize: "11.5px" }}>
             {(resumeData.skills.aiMlAndComputerVision || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.frontendDevelopment || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Frontend Development: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.frontendDevelopment || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.databases || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Databases: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.databases || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      
+      {(resumeData.skills.cloudTools || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Cloud & Tools: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.cloudTools || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      
+     
+      {(resumeData.skills.softSkills || []).length > 0 && (
+        <div>
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Observaibility: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.softSkills || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.softwareEngineeringFundamentals || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Software Engineering Fundamentals: {" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.softwareEngineeringFundamentals || [])
               .map((skill) => skill.name)
               .join(", ")}
           </span>
@@ -217,8 +303,15 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
   </div>
 )}
 
-
 {/* EXPERIENCE */}
+{resumeData.workExperience.some(
+        (exp) =>
+          exp.company.trim() !== "" ||
+          exp.role.trim() !== "" ||
+          exp.startDate.trim() !== "" ||
+          exp.endDate.trim() !== "" ||
+          exp.description.trim() !== ""
+      ) && (
 <div className="px-2 pb-1" style={{ fontFamily: bodyFont }}>
   <h2
     className="font-bold text-gray-800 mb-0.5"
@@ -227,7 +320,7 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
     <span style={{ fontSize: "16px" }}>E</span>
     <span style={{ fontSize: "14px" }}>XPERIENCE</span>
   </h2>
-  <hr className="border-t border-gray-400 mb-1" />
+  <hr className="border-t border-gray-800 mb-1" />
   {resumeData.workExperience.map((exp, index) => (
     <div key={index} className="mb-1.5 pl-4">
       {/* Company + Dates */}
@@ -241,10 +334,11 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
             year: "numeric",
           })}{" "}
           –{" "}
-          {new Date(exp.endDate).toLocaleString("default", {
+          {exp.endDate ? new Date(exp.endDate).toLocaleString("default", {
             month: "long",
             year: "numeric",
-          })}
+          })
+          : "Present"}
         </p>
       </div>
       {/* Role + Location */}
@@ -280,6 +374,7 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
     </div>
   ))}
 </div>
+)}
 
 {/* PROJECTS */}
 <div className="px-2 pb-1" style={{ fontFamily: bodyFont }}>
@@ -290,7 +385,7 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
     <span style={{ fontSize: "16px" }}>P</span>
     <span style={{ fontSize: "14px" }}>ROJECTS</span>
   </h2>
-  <hr className="border-t border-gray-400 mb-1" />
+  <hr className="border-t border-gray-800 mb-1" />
   {resumeData.projects.map((project, index) => (
     <div key={index} className="mb-1.5 pl-4">
       {/* Title + Date + GitHub */}
@@ -349,14 +444,18 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
             </li>
           ))}
       </ul>
+      {project.tools && project.tools.length > 0 && (
+            <div className=" text-gray-700">
+              <span className="font-bold">Tools:{" "}{project.tools.join(", ")}</span>
+            </div>
+      )}
     </div>
   ))}
 </div>
 
-
 {/* PUBLICATIONS */}
 {resumeData.publications?.length > 0 && (
-  <div className="px-4 pb-2" style={{ fontFamily: bodyFont }}>
+  <div className="px-4 pb-2 " style={{ fontFamily: bodyFont }}>
     <h2
       className="font-bold text-gray-800 mb-0.5"
       style={{ letterSpacing: "0.5px" }}
@@ -364,9 +463,10 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
       <span style={{ fontSize: "16px" }}>P</span>
       <span style={{ fontSize: "14px" }}>UBLICATIONS</span>
     </h2>
-    <hr className="border-t border-gray-400 mb-1" />
+    <hr className="border-t border-gray-800 mb-1" />
     {resumeData.publications.map((pub, index) => (
-      <div key={index} className="mb-1 pl-4">
+      <>
+      <div key={index} className="mb-1 pl-4 flex justify-between items-center">
         <p
           className="font-semibold text-gray-900"
           style={{ fontSize: "12px" }}
@@ -384,6 +484,19 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
             pub.title
           )}
         </p>
+        <span>{pub.link && (
+            <a
+              href={pub.link}
+              className="hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Link
+            </a>
+          )} 
+        </span>
+        </div>
+        <div className="mb-1 pl-4">
         <p className="text-gray-700 italic" style={{ fontSize: "11px" }}>
           {pub.conference}, {pub.year}
         </p>
@@ -409,14 +522,78 @@ function TemplateEight({ resumeData, colorPalette, containerWidth }) {
             ))}
         </ul>
       </div>
+      </>
     ))}
   </div>
 )}
 
-    </div> 
-  )
+{resumeData.certifications.some(
+  (cert) =>
+    cert.title.trim() !== "" ||
+    cert.issuer.trim() !== "" ||
+    cert.year.trim() !== ""
+) && (
+  <div className="px-4 pb-2" style={{ fontFamily: bodyFont }}>
+    <h2
+      className="font-bold text-gray-800 mb-0.5"
+      style={{ letterSpacing: "0.5px" }}
+    >
+      <span style={{ fontSize: "16px" }}>C</span>
+      <span style={{ fontSize: "14px" }}>ERTIFICATIONS</span>
+    </h2>
+    <hr className="border-t border-gray-800 mb-1" />
+
+    {resumeData.certifications.map((cert, index) => (
+      <div key={index} className="mb-1 pl-4 flex justify-between">
+        <p
+          className="font-semibold text-gray-900"
+          style={{ fontSize: "12px" }}
+        >
+          {cert.title}
+        </p>
+        <p className="text-gray-700 italic" style={{ fontSize: "11px" }}>
+          {cert.issuer}
+          {cert.year && `, ${cert.year}`}
+        </p>
+      </div>
+    ))}
+  </div>
+)}
+
+{resumeData.languages.some((lang) => lang.name.trim() !== "") && (
+  <div className="px-4 pb-2" style={{ fontFamily: bodyFont }}>
+    <h2
+      className="font-bold text-gray-800 mb-0.5"
+      style={{ letterSpacing: "0.5px" }}
+    >
+      <span style={{ fontSize: "16px" }}>L</span>
+      <span style={{ fontSize: "14px" }}>ANGUAGES</span>
+    </h2>
+    <hr className="border-t border-gray-800 mb-1" />
+
+    <div className="pl-4">
+      <ul
+        className="mt-0.5 space-y-0.25"
+        style={{
+          fontSize: "11.5px",
+          lineHeight: "1.35",
+          listStyleType: '"\\2022  "',
+        }}
+      >
+        <li
+          style={{ textIndent: "-0.6em", paddingLeft: "0.6em" }}
+        >
+          {resumeData.languages
+            .filter((lang) => lang.name.trim() !== "")
+            .map((lang) => lang.name)
+            .join(", ")}
+        </li>
+      </ul>
+    </div>
+  </div>
+)}
+</div> 
+)
 }
-
-
 
 export default TemplateEight;

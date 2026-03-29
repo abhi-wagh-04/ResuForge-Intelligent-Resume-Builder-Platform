@@ -86,6 +86,8 @@ function EditResume() {
         institution: "",
         startDate: "",
         endDate: "",
+        cgpa: "",
+        location: "",
       },
     ],
     skills: [
@@ -316,7 +318,7 @@ function EditResume() {
 
       case "skills":
         return (
-// <<<<<<< HEAD
+
           <SkillsInfoForm
             skillsInfo={resumeData?.skills}
             updateArrayItem={(index, key, value) => {
@@ -477,7 +479,7 @@ function EditResume() {
       ...prev,
       skills: {
         ...prev.skills,
-        [category]: [...prev.skills[category], newItem],
+        [category]: [...prev.skills[category]].length > 0 ? [...prev.skills[category], newItem] : [newItem],
       },
     }));
   };
@@ -500,7 +502,7 @@ function EditResume() {
 
 
 
-// >>>>>>> b8cabbd (Added Skills Section)
+
   // Fetch resume info by ID
   const fetchResumeDetailsById = async () => {
     try {
