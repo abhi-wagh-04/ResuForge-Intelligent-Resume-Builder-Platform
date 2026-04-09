@@ -107,8 +107,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div> */}
 
-<<<<<<< HEAD
-=======
+
       {/* SKILLS */}
       {resumeData.skills && (
         <div className="px-6 pb-3">
@@ -128,7 +127,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}        
 
->>>>>>> b8cabbd (Added Skills Section)
+
       {/* EDUCATION */}
       {resumeData.educaton.length > 0 && (
         <div className="px-6 pb-3">
@@ -165,7 +164,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
-<<<<<<< HEAD
+{/* <<<<<<< HEAD */}
       {/* SKILLS */}
       {resumeData.skills.length > 0 && (
         <div className="px-6 pb-3">
@@ -176,9 +175,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
           </span>
         </div>
       )}
-=======
-      
->>>>>>> b8cabbd (Added Skills Section)
+
 
       {/* EXPERIENCE */}
       {resumeData.workExperience.some(
