@@ -119,7 +119,6 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div> */}
 
-<<<<<<< HEAD
 
       {/* SKILLS */}
       {resumeData.skills && (
@@ -133,68 +132,10 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
               ...(resumeData.skills.frameworksAndTools || []),
               ...(resumeData.skills.aiMlAndComputerVision || []),
             ]
-=======
-      {/* EDUCATION */}
-     {resumeData.educaton.length > 0 && (
-  <div className="px-6 pb-3">
-    <h2 className="text-[15px] font-bold text-gray-800 mb-1">
-      <span style={{ fontSize: "16px" }}>E</span>
-      <span style={{ fontSize: "14px" }}>DUCATION</span>
-    </h2>
-    <hr className="border-t-2 border-gray-400 mb-2" />
-
-    <ul className="pl-5 list-disc space-y-2">
-      {resumeData.educaton.map((edu, index) => (
-        <li key={index} className="text-[12px]">
-          {/* Institution */}
-          <p className="font-semibold text-gray-800">{edu.institution}</p>
-
-          {/* Degree + Dates */}
-          <div className="flex justify-between items-start">
-            <p className="font-medium text-gray-700">{edu.degree}</p>
-            <p className="text-[11px] text-gray-600">
-              {new Date(edu.startDate).toLocaleString("default", {
-                month: "long",
-                year: "numeric",
-              })}{" "}
-              -{" "}
-              {new Date(edu.endDate).toLocaleString("default", {
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-
-{/* Resume Skills */}
-{resumeData.skills && (
-  <div className="px-6 pb-2">
-    <h2
-      className="font-bold text-gray-800 mb-0.5"
-      style={{ letterSpacing: "0.5px" }}
-    >
-      <span style={{ fontSize: "16px" }}>S</span>
-      <span style={{ fontSize: "14px" }}>KILLS</span>
-    </h2>
-    <hr className="border-t border-gray-400 mb-1 w-full" />
-    <div className="pl-4">
-      {(resumeData.skills.programming || []).length > 0 && (
-        <div className="mb-0.5">
-          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
-            Languages:{" "}
-          </span>
-          <span style={{ fontSize: "11.5px" }}>
-            {(resumeData.skills.programming || [])
->>>>>>> c1ab1ff (Added extra template)
               .map((skill) => skill.name)
               .join(", ")}
           </span>
         </div>
-<<<<<<< HEAD
       )}        
 
 
@@ -234,7 +175,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
-{/* <<<<<<< HEAD */}
+
       {/* SKILLS */}
       {resumeData.skills.length > 0 && (
         <div className="px-6 pb-3">
@@ -246,8 +187,8 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
-=======
-      )}
+
+
       {(resumeData.skills.frameworksAndTools || []).length > 0 && (
         <div className="mb-0.5">
           <span className="font-semibold" style={{ fontSize: "11.5px" }}>
@@ -284,10 +225,6 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
           </span>
         </div>
       )}
-    </div>
-  </div>
-)}
->>>>>>> c1ab1ff (Added extra template)
 
       {/* EXPERIENCE */}
       {resumeData.workExperience.some(
