@@ -5,6 +5,7 @@ import TEMPLATE_FOUR_IMG from "../assets/template-4.png";
 import TEMPLATE_FIVE_IMG from "../assets/template-5.png";
 import TEMPLATE_SIX_IMG from "../assets/template-6.png";
 import TEMPLATE_SEVEN_IMG from "../assets/template-7.png";
+import TEMPLATE_EIGHT_IMG from "../assets/template-8.png";
 
 export const resumeTemplates = [
   {
@@ -40,6 +41,11 @@ export const resumeTemplates = [
   {
     id: "07",
     thumbnailImg: TEMPLATE_SEVEN_IMG,
+    colorPaletteCode: "themeFive",
+  },
+  {
+    id: "08",
+    thumbnailImg: TEMPLATE_EIGHT_IMG,
     colorPaletteCode: "themeFive",
   },
 ];

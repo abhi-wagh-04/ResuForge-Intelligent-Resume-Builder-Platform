@@ -5,6 +5,7 @@ import TemplateTwo from "./TemplateFour";
 import TemplateFive from "./TemplateFive";
 import TemplateSix from "./TemplateSix";
 import TemplateSeven from "./TemplateSeven";
+import TemplateEight from "./TemplateEight";
 
 function RenderResume({
   templateId,
@@ -69,6 +70,14 @@ function RenderResume({
           containerWidth={containerWidth}
         />
       );
+    case "08":
+      return (
+        <TemplateEight
+          resumeData={resumeData}
+          colorPalette={colorPalette}
+          containerWidth={containerWidth}
+        />
+      );  
     default:
       return (
         <TemplateSix

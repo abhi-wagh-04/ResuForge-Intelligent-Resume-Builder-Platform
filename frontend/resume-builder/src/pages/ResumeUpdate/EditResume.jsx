@@ -646,6 +646,70 @@ function EditResume() {
 
   //Download Resume
   const reactToPrintFn = useReactToPrint({ contentRef: resumeDownloadRef });
+  const handleBackendPdfDownload = async () => {
+  try {
+    const resumeElement = resumeDownloadRef.current;
+
+    if (!resumeElement) {
+      console.error("No HTML content found");
+      return;
+    }
+
+    // Get all <link> and <style> tags from the current page
+    const headContent = Array.from(
+      document.head.querySelectorAll("link, style")
+    )
+      .map((node) => node.outerHTML)
+      .join("\n");
+
+    // Build a complete HTML document including styles + margin fix
+    const fullHTML = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8" />
+          <style>
+            html, body {
+              margin: 0;
+              padding: 0;
+              background: white;
+              box-sizing: border-box;
+            }
+            *, *::before, *::after {
+              box-sizing: inherit;
+            }
+          </style>
+          ${headContent} <!-- This ensures Tailwind and other styles are included -->
+        </head>
+        <body>
+          ${resumeElement.outerHTML}
+        </body>
+      </html>
+    `;
+
+    // Send to backend
+    const response = await axiosInstance.post(
+      API_PATHS.RESUME.DOWNLOAD_PDF,
+      { htmlContent: fullHTML },
+      { responseType: "blob" }
+    );
+
+    // Create a Blob and download
+    const file = new Blob([response.data], { type: "application/pdf" });
+    const fileURL = window.URL.createObjectURL(file);
+
+    const link = document.createElement("a");
+    link.href = fileURL;
+    link.download = "resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    window.URL.revokeObjectURL(fileURL);
+  } catch (error) {
+    console.error("Error downloading PDF:", error);
+  }
+  };
 
   // Function to update basewidth based on the resume container size
   const updateBaseWidth = () => {
@@ -780,7 +844,7 @@ function EditResume() {
         showActionBtn
         actionBtnText="Download"
         actionBtnIcon={<LuDownload className="" />}
-        onActionClick={() => reactToPrintFn()}
+        onActionClick={handleBackendPdfDownload}
       >
         <div ref={resumeDownloadRef} className="w-[98vw] h-[96vh]">
           <RenderResume

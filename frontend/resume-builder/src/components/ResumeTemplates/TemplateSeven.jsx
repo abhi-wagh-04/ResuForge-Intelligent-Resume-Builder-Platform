@@ -51,7 +51,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
       ref={resumeRef}
       className="p-4 bg-white text-[12px] leading-tight"
       style={{
-        fontFamily: `"Georgia", serif`,
+        fontFamily: `"Times New Roman", Times, serif`,
         fontFeatureSettings: `"lnum", "tnum"`,
         transform: containerWidth > 0 ? `scale(1)` : "none",
         transformOrigin: "top left",
@@ -63,16 +63,16 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         <div className="flex justify-between text-[11px] flex-wrap">
           {/* Left section */}
           <div className="text-left">
-            <h2 className="text-lg font-bold">
+            <h2 className="text-[28px] font-bold">
               {resumeData.profileInfo.fullName}
             </h2>
 
             {resumeData.contactInfo.github && (
               <div>
-                <span className="font-semibold">GitHub: </span>
+                <span className="font-semibold text-gray-600">GitHub: </span>
                 <a
                   href={resumeData.contactInfo.github}
-                  className="text-blue-600 hover:underline"
+                  className="text-gray-600 hover:underline"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -83,20 +83,32 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
 
             {resumeData.contactInfo.linkedin && (
               <div>
-                <span className="font-semibold">LinkedIn: </span>
-                {resumeData.contactInfo.linkedin}
+                <span className="font-semibold text-gray-600 text-gray-600">LinkedIn: </span>
+                <a
+                  href={resumeData.contactInfo.github}
+                  className="text-gray-600 hover:underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >{resumeData.contactInfo.linkedin}</a>
+                
               </div>
             )}
           </div>
 
           {/* Right section */}
-          <div className="text-right">
+          <div className="text-right pt-4">
             <div>
-              <span className="font-semibold">Email: </span>
-              {resumeData.contactInfo.email}
+              <span className="font-semibold text-gray-600">Email: </span>
+              <a
+                  href={resumeData.contactInfo.github}
+                  className="text-gray-600 hover:underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >{resumeData.contactInfo.email}</a>
+              
             </div>
             <div>
-              <span className="font-semibold">Phone: </span>
+              <span className="font-semibold text-gray-600">Phone: +91 </span>
               {resumeData.contactInfo.phone}
             </div>
           </div>
@@ -107,6 +119,7 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         <p className="text-[12px]">{resumeData.profileInfo.summary}</p>
       </div> */}
 
+<<<<<<< HEAD
 
       {/* SKILLS */}
       {resumeData.skills && (
@@ -120,11 +133,68 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
               ...(resumeData.skills.frameworksAndTools || []),
               ...(resumeData.skills.aiMlAndComputerVision || []),
             ]
+=======
+      {/* EDUCATION */}
+     {resumeData.educaton.length > 0 && (
+  <div className="px-6 pb-3">
+    <h2 className="text-[15px] font-bold text-gray-800 mb-1">
+      <span style={{ fontSize: "16px" }}>E</span>
+      <span style={{ fontSize: "14px" }}>DUCATION</span>
+    </h2>
+    <hr className="border-t-2 border-gray-400 mb-2" />
+
+    <ul className="pl-5 list-disc space-y-2">
+      {resumeData.educaton.map((edu, index) => (
+        <li key={index} className="text-[12px]">
+          {/* Institution */}
+          <p className="font-semibold text-gray-800">{edu.institution}</p>
+
+          {/* Degree + Dates */}
+          <div className="flex justify-between items-start">
+            <p className="font-medium text-gray-700">{edu.degree}</p>
+            <p className="text-[11px] text-gray-600">
+              {new Date(edu.startDate).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })}{" "}
+              -{" "}
+              {new Date(edu.endDate).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+{/* Resume Skills */}
+{resumeData.skills && (
+  <div className="px-6 pb-2">
+    <h2
+      className="font-bold text-gray-800 mb-0.5"
+      style={{ letterSpacing: "0.5px" }}
+    >
+      <span style={{ fontSize: "16px" }}>S</span>
+      <span style={{ fontSize: "14px" }}>KILLS</span>
+    </h2>
+    <hr className="border-t border-gray-400 mb-1 w-full" />
+    <div className="pl-4">
+      {(resumeData.skills.programming || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Languages:{" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.programming || [])
+>>>>>>> c1ab1ff (Added extra template)
               .map((skill) => skill.name)
-              .filter(Boolean)
               .join(", ")}
           </span>
         </div>
+<<<<<<< HEAD
       )}        
 
 
@@ -176,6 +246,48 @@ function TemplateSeven({ resumeData, colorPalette, containerWidth }) {
         </div>
       )}
 
+=======
+      )}
+      {(resumeData.skills.frameworksAndTools || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Frameworks & Libraries:{" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.frameworksAndTools || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.databases || []).length > 0 && (
+        <div className="mb-0.5">
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            Databases:{" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.databases || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+      {(resumeData.skills.aiMlAndComputerVision || []).length > 0 && (
+        <div>
+          <span className="font-semibold" style={{ fontSize: "11.5px" }}>
+            AI/ML & Computer Vision:{" "}
+          </span>
+          <span style={{ fontSize: "11.5px" }}>
+            {(resumeData.skills.aiMlAndComputerVision || [])
+              .map((skill) => skill.name)
+              .join(", ")}
+          </span>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+>>>>>>> c1ab1ff (Added extra template)
 
       {/* EXPERIENCE */}
       {resumeData.workExperience.some(
