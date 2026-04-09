@@ -247,10 +247,7 @@ function EditResume() {
       "education-info",
       "skills",
       "projects",
-<<<<<<< HEAD
-=======
       "publications",
->>>>>>> b8cabbd (Added Skills Section)
       "certifications",
       "additionalInfo",
     ];
@@ -319,7 +316,7 @@ function EditResume() {
 
       case "skills":
         return (
-<<<<<<< HEAD
+// <<<<<<< HEAD
           <SkillsInfoForm
             skillsInfo={resumeData?.skills}
             updateArrayItem={(index, key, value) => {
@@ -328,14 +325,12 @@ function EditResume() {
             addArrayItem={(newItem) => addArrayItem("skills", newItem)}
             removeArrayItem={(index) => removeArrayItem("skills", index)}
           />
-=======
-         <SkillsInfoForm
-          skillsInfo={resumeData?.skills}
-          updateArrayItem={updateSkillItem}   // already expects (category, index, key, value)
-          addArrayItem={addSkillItem}         // expects (category, newItem)
-          removeArrayItem={removeSkillItem}   // expects (category, index)
-        />
->>>>>>> b8cabbd (Added Skills Section)
+        //  <SkillsInfoForm
+        //   skillsInfo={resumeData?.skills}
+        //   updateArrayItem={updateSkillItem}   // already expects (category, index, key, value)
+        //   addArrayItem={addSkillItem}         // expects (category, newItem)
+        //   removeArrayItem={removeSkillItem}   // expects (category, index)
+        // />
         );
 
       case "projects":
@@ -448,8 +443,8 @@ function EditResume() {
     });
   };
 
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
   // ------------------- Skills Helpers -------------------
 
   // Update an item in a skills category
@@ -505,7 +500,7 @@ function EditResume() {
 
 
 
->>>>>>> b8cabbd (Added Skills Section)
+// >>>>>>> b8cabbd (Added Skills Section)
   // Fetch resume info by ID
   const fetchResumeDetailsById = async () => {
     try {
